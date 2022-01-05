@@ -1,0 +1,23 @@
+{
+  "root": "libs/quote-feature",
+  "sourceRoot": "libs/quote-feature/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/quote-feature/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/quote-feature"],
+      "options": {
+        "jestConfig": "libs/quote-feature/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

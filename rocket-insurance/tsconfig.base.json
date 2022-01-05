@@ -14,7 +14,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@rocket-insurance/quote-feature": ["libs/quote-feature/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
