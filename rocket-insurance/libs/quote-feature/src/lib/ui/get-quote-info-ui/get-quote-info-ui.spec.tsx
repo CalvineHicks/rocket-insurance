@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import GetQuoteInfoUi from './get-quote-info-ui';
+import GetQuoteInfo from './get-quote-info-ui';
 
-describe('GetQuoteInfoUi', () => {
+describe('GetQuoteInfo', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<GetQuoteInfoUi />);
+    const { baseElement } = render(<GetQuoteInfo />);
     expect(baseElement).toBeTruthy();
   });
 });

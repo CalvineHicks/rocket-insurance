@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import DisplayQuoteUi from './display-quote-ui';
+import DisplayQuote from './display-quote-ui';
 
-describe('DisplayQuoteUi', () => {
+describe('DisplayQuote', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<DisplayQuoteUi />);
+    const { baseElement } = render(<DisplayQuote />);
     expect(baseElement).toBeTruthy();
   });
 });
