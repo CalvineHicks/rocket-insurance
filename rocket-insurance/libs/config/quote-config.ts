@@ -1,0 +1,1 @@
+export const baseQuoteUrl = 'https://fed-challenge-api.sure.now.sh/api/v1/quotes'
