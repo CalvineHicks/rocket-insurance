@@ -1,8 +1,8 @@
 .display-quote {
+    border: 1px solid black;
     margin: 26px;
     padding: 0 26px 26px 26px;
     width: 430px;
-    border: 1px solid black;
 
     .premium {
      display: flex;
@@ -47,13 +47,12 @@
     }
 
     button {
-        -webkit-border-radius: 5px;
+        background:#e6e6ff; 
         border-radius: 5px; 
         border:0 none;
         cursor:pointer;
         font-weight: 600;
         padding:5px 5px; 
-        background:#e6e6ff; 
         &:hover {
             background:#ccccff; 
         }

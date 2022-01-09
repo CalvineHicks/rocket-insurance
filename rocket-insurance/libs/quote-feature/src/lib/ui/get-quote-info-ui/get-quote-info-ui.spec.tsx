@@ -4,7 +4,7 @@ import GetQuoteInfo from './get-quote-info-ui';
 
 describe('GetQuoteInfo', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<GetQuoteInfo />);
+    const { baseElement } = render(<GetQuoteInfo setQuoteInfo={jest.fn()} />);
     expect(baseElement).toBeTruthy();
   });
 });

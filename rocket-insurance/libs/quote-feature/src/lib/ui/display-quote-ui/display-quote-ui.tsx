@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
-import { baseQuoteUrl } from '../../../../../config/quote-config';
+import { baseQuoteUrl } from '../../config/quote-config';
 import { Quote, QuoteInfo } from '../../util/quote-models';
 import './display-quote-ui.module.scss';
 
@@ -16,38 +16,43 @@ export function DisplayQuote({ quoteInfo }: DisplayQuoteProps) {
   const { register, handleSubmit } = useForm();
 
   useEffect(() => {
-    axios.post(baseQuoteUrl, { ...quoteInfo })
-      .then((response) => {
-        setQuote(response.data.quote);
-        console.log(response.data.quote);
-      })
-      .catch((e) => {
-        console.log('error thrown: ', e);
-      })
-      .finally(() => {
-        setLoaded(true);
-      })
+    const createQuote = async () => {
+      await axios.post(baseQuoteUrl, { ...quoteInfo })
+        .then((response) => {
+          setQuote(response.data.quote);
+        })
+        .catch((e) => {
+          console.log('error thrown: ', e);
+        })
+        .finally(() => {
+          setLoaded(true);
+        })
+    }
+    createQuote();
   }, [])
 
   const onSubmit = (data: { deductible: string, asteroid_collision: string }) => {
-    axios.put(baseQuoteUrl + `/${quote?.quoteId}`,
-      {
-        quote: {
-          quoteId: quote?.quoteId,
-          rating_address: quote?.rating_address,
-          policy_holder: quote?.policy_holder,
-          variable_selections: { 
-            deductible: parseInt(data.deductible),
-            asteroid_collision: parseInt(data.asteroid_collision)
-           }
-        }
-      })
+    const updateQuote = async () => {
+      await axios.put(baseQuoteUrl + `/${quote?.quoteId}`,
+        {
+          quote: {
+            quoteId: quote?.quoteId,
+            rating_address: quote?.rating_address,
+            policy_holder: quote?.policy_holder,
+            variable_selections: {
+              deductible: parseInt(data.deductible),
+              asteroid_collision: parseInt(data.asteroid_collision)
+            }
+          }
+        })
       .then((response) => {
         setQuote(response.data.quote);
       })
       .catch((e) => {
         console.log('error thrown: ', e);
       })
+    }
+    updateQuote();
   }
 
 
@@ -80,7 +85,7 @@ export function DisplayQuote({ quoteInfo }: DisplayQuoteProps) {
                   )}
               </select>
             </label>
-            <button>Update Coverage Limits</button>
+            <button role='submit'>Update Coverage Limits</button>
           </form>
         </div>
         ) : (

@@ -7,8 +7,8 @@ export interface Address {
 }
 
 export interface QuoteInfo {
-    firstName: string,
-    lastName: string,
+    first_name: string,
+    last_name: string,
     address: Address
 }
 

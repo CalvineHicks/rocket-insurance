@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { QuoteInfo } from "../../util/quote-models";
 import './get-quote-info-ui.module.scss';
@@ -11,13 +10,9 @@ export interface GetQuoteInfoProps {
 export function GetQuoteInfo({ setQuoteInfo }: GetQuoteInfoProps) {
   const { register, formState: { errors }, handleSubmit } = useForm();
 
-  const onSubmit = (e: QuoteInfo) => {
-    console.log(e);
-    setQuoteInfo(e)
+  const onSubmit = (data: QuoteInfo) => {
+    setQuoteInfo(data)
   }
-
-  useEffect(() => 
-  console.log('calvin says, ', errors));
 
   return (
     <div className='get-quote'>
@@ -35,7 +30,7 @@ export function GetQuoteInfo({ setQuoteInfo }: GetQuoteInfoProps) {
         <div className='address-info'>
           <label>
             Line 1:
-            <input className={errors['address']['line_1'] && 'invalid'} {...register('address.line_1', { required: true })} />
+            <input className={errors['address']?.line_1 && 'invalid'} {...register('address.line_1', { required: true })} />
           </label>
           <label>
             Line 2 (optional):
@@ -43,15 +38,15 @@ export function GetQuoteInfo({ setQuoteInfo }: GetQuoteInfoProps) {
           </label>
           <label>
             City:
-            <input className={errors['address']['city'] && 'invalid'} {...register('address.city', { required: true })} />
+            <input className={errors['address']?.city && 'invalid'} {...register('address.city', { required: true })} />
           </label>
           <label>
             Region:
-            <input className={errors['address']['region'] && 'invalid'} {...register('address.region', { required: true })} />
+            <input className={errors['address']?.region && 'invalid'} {...register('address.region', { required: true })} />
           </label>
           <label>
             Postal:
-            <input className={errors['address']['postal'] && 'invalid'} {...register('address.postal', { required: true })} />
+            <input className={errors['address']?.postal && 'invalid'} {...register('address.postal', { required: true })} />
           </label>
         </div>
         <div className='submit'>
