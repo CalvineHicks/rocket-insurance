@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { baseQuoteUrl } from '../../config/quote-config';
+import { postQuote, putQuote } from '../../data-access/quote-data-access';
 import { Quote, QuoteInfo } from '../../util/quote-models';
 import './display-quote-ui.module.scss';
 
@@ -17,7 +18,7 @@ export function DisplayQuote({ quoteInfo }: DisplayQuoteProps) {
 
   useEffect(() => {
     const createQuote = async () => {
-      await axios.post(baseQuoteUrl, { ...quoteInfo })
+      await postQuote({...quoteInfo})
         .then((response) => {
           setQuote(response.data.quote);
         })
@@ -33,18 +34,7 @@ export function DisplayQuote({ quoteInfo }: DisplayQuoteProps) {
 
   const onSubmit = (data: { deductible: string, asteroid_collision: string }) => {
     const updateQuote = async () => {
-      await axios.put(baseQuoteUrl + `/${quote?.quoteId}`,
-        {
-          quote: {
-            quoteId: quote?.quoteId,
-            rating_address: quote?.rating_address,
-            policy_holder: quote?.policy_holder,
-            variable_selections: {
-              deductible: parseInt(data.deductible),
-              asteroid_collision: parseInt(data.asteroid_collision)
-            }
-          }
-        })
+      await putQuote(quote!, parseInt(data.deductible), parseInt(data.asteroid_collision))
       .then((response) => {
         setQuote(response.data.quote);
       })
